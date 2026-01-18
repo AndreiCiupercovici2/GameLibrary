@@ -1,7 +1,12 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using GameLibrary.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<GameLibraryContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("GameLibraryContext") ?? throw new InvalidOperationException("Connection string 'GameLibraryContext' not found.")));
 
 var app = builder.Build();
 
