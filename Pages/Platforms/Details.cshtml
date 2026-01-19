@@ -23,6 +23,15 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Platform.Manufacturer)
         </dd>
+        <dt class="col-sm-2">
+            Games
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (var platformLink in Model.Platform.GamePlatforms)
+            {
+                <span>@platformLink.Game.Title</span> <br />
+            }
+        </dd>
     </dl>
 </div>
 <div>

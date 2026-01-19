@@ -28,7 +28,14 @@ namespace GameLibrary.Pages.Games
                 return NotFound();
             }
 
-            var game = await _context.Game.FirstOrDefaultAsync(m => m.ID == id);
+            var game = await _context.Game
+                .Include(g => g.Studio)
+                .Include(g => g.GameGenres)
+                    .ThenInclude(gg => gg.Genre)
+                .Include(g => g.GamePlatforms)
+                    .ThenInclude(gp => gp.Platform)
+                .FirstOrDefaultAsync(m => m.ID == id);
+
             if (game == null)
             {
                 return NotFound();
@@ -37,6 +44,7 @@ namespace GameLibrary.Pages.Games
             {
                 Game = game;
             }
+
             return Page();
         }
     }

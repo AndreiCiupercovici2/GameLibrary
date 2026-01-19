@@ -28,7 +28,11 @@ namespace GameLibrary.Pages.Platforms
                 return NotFound();
             }
 
-            var platform = await _context.Platform.FirstOrDefaultAsync(m => m.ID == id);
+            var platform = await _context.Platform
+                .Include(p => p.GamePlatforms)
+                    .ThenInclude(gp => gp.Game)
+                .FirstOrDefaultAsync(m => m.ID == id);
+
             if (platform == null)
             {
                 return NotFound();

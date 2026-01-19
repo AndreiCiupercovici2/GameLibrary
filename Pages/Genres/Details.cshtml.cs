@@ -28,7 +28,11 @@ namespace GameLibrary.Pages.Genres
                 return NotFound();
             }
 
-            var genre = await _context.Genre.FirstOrDefaultAsync(m => m.ID == id);
+            var genre = await _context.Genre
+                .Include(g => g.GameGenres)
+                    .ThenInclude(gg => gg.Game)
+                    .FirstOrDefaultAsync(m => m.ID == id);
+
             if (genre == null)
             {
                 return NotFound();

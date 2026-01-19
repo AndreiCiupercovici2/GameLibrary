@@ -21,7 +21,12 @@ namespace GameLibrary.Pages.Platforms
         }
 
         [BindProperty]
-        public Platform Platform { get; set; } = default!;
+        public Platform Platform { get; set; }
+
+        [BindProperty]
+        public List<int> SelectedGameIDs { get; set; }
+
+        public List<SelectListItem> AllGames { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,11 +35,29 @@ namespace GameLibrary.Pages.Platforms
                 return NotFound();
             }
 
-            var platform =  await _context.Platform.FirstOrDefaultAsync(m => m.ID == id);
+            var platform =  await _context.Platform
+                .Include(g => g.GamePlatforms)
+                    .ThenInclude(gg => gg.Game)
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (platform == null)
             {
                 return NotFound();
             }
+            AllGames = await _context.Game
+                .Select(g => new SelectListItem
+                {
+                    Value = g.ID.ToString(),
+                    Text = g.Title
+                })
+                .ToListAsync();
+
+            AllGames.Insert(0, new SelectListItem
+            {
+                Value = "-1",
+                Text = "-- None --"
+            });
+
+            SelectedGameIDs = platform.GamePlatforms?.Select(gg => gg.GameID).ToList() ?? new List<int>();
             Platform = platform;
             return Page();
         }
@@ -47,31 +70,70 @@ namespace GameLibrary.Pages.Platforms
             {
                 return Page();
             }
+            var platformToUpdate = await _context.Platform
+                .Include(g => g.GamePlatforms)
+                    .ThenInclude(gg => gg.Game)
+                .FirstOrDefaultAsync(g => g.ID == Platform.ID);
 
-            _context.Attach(Platform).State = EntityState.Modified;
-
-            try
+            if (platformToUpdate == null)
             {
+                return NotFound();
+            }    
+
+            if (await TryUpdateModelAsync<Platform>(
+                platformToUpdate,
+                "Platform",
+                g => g.Name))
+            {
+                UpdatePlatformGames(SelectedGameIDs, platformToUpdate);
+
                 await _context.SaveChangesAsync();
+
+                return RedirectToPage("./Index");
             }
-            catch (DbUpdateConcurrencyException)
+
+            UpdatePlatformGames(SelectedGameIDs, platformToUpdate);
+            return Page();
+        }
+
+        private void UpdatePlatformGames(List<int> selectedGameIDs, Platform platformToUpdate)
+        {
+            if (selectedGameIDs == null)
             {
-                if (!PlatformExists(Platform.ID))
+                platformToUpdate.GamePlatforms = new List<GamePlatform>();
+                return;
+            }
+
+            selectedGameIDs.Remove(-1);
+
+            var selectedGamesHS = new HashSet<int>(selectedGameIDs);
+            var currentGamesHS = new HashSet<int>(platformToUpdate.GamePlatforms.Select(gg => gg.GameID));
+
+            foreach (var game in _context.Game)
+            {
+                if (selectedGamesHS.Contains(game.ID))
                 {
-                    return NotFound();
+                    if(!currentGamesHS.Contains(game.ID))
+                    {
+                        platformToUpdate.GamePlatforms.Add(new GamePlatform
+                        {
+                            PlatformID = platformToUpdate.ID,
+                            GameID = game.ID
+                        });
+                    }
                 }
                 else
                 {
-                    throw;
+                    if (currentGamesHS.Contains(game.ID))
+                    {
+                        var gameToRemove = platformToUpdate.GamePlatforms.FirstOrDefault(gg => gg.GameID == game.ID);
+                        if (gameToRemove != null)
+                        {
+                            _context.Remove(gameToRemove);
+                        }
+                    }
                 }
             }
-
-            return RedirectToPage("./Index");
-        }
-
-        private bool PlatformExists(int id)
-        {
-            return _context.Platform.Any(e => e.ID == id);
         }
     }
 }

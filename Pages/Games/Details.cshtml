@@ -29,6 +29,24 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Game.Studio.Name)
         </dd>
+        <dt class="col-sm-2">
+            Genres
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (var genreLink in Model.Game.GameGenres)
+            {
+                <span>@genreLink.Genre.Name</span> <br />
+            }
+        </dd>
+        <dt class="col-sm-2">
+            Platforms
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (var platformLink in Model.Game.GamePlatforms)
+            {
+                <span>@platformLink.Platform.Name</span> <br />
+            }
+        </dd>
     </dl>
 </div>
 <div>

@@ -19,11 +19,14 @@ namespace GameLibrary.Pages.Platforms
             _context = context;
         }
 
-        public IList<Platform> Platform { get;set; } = default!;
+        public IList<Platform> Platform { get;set; }
 
         public async Task OnGetAsync()
         {
-            Platform = await _context.Platform.ToListAsync();
+            Platform = await _context.Platform
+                .Include(p => p.GamePlatforms)
+                    .ThenInclude(gp => gp.Game)
+                .ToListAsync();
         }
     }
 }

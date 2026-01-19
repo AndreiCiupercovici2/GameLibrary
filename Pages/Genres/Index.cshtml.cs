@@ -23,7 +23,10 @@ namespace GameLibrary.Pages.Genres
 
         public async Task OnGetAsync()
         {
-            Genre = await _context.Genre.ToListAsync();
+            Genre = await _context.Genre
+                .Include(g => g.GameGenres)
+                    .ThenInclude(gg => gg.Game)
+                .ToListAsync();
         }
     }
 }
