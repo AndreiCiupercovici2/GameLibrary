@@ -2,13 +2,13 @@
 @model GameLibrary.Pages.Platforms.IndexModel
 
 @{
-    ViewData["Title"] = "Platforms";
+    ViewData["Title"] = SharedLocalizer["Platforms"];
 }
 
-<h1>Platforms</h1>
+<h1>@SharedLocalizer["Platforms"]</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">@SharedLocalizer["PlatformCreatePageTitle"]</a>
 </p>
 <table class="table">
     <thead>
@@ -19,7 +19,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Platform[0].Manufacturer)
             </th>
-            <th>Games</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Platform[0].GamePlatforms)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -39,9 +41,9 @@
                 }
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.ID">@SharedLocalizer["Edit"]</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">@SharedLocalizer["Details"]</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">@SharedLocalizer["DeleteButton"]</a>
             </td>
         </tr>
 }

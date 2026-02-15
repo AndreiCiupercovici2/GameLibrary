@@ -2,13 +2,13 @@
 @model GameLibrary.Pages.Genres.DetailsModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = SharedLocalizer["DetailsGenrePageTitle"];
 }
 
-<h1>Details</h1>
+<h1>@SharedLocalizer["DetailsGenrePageTitle"]</h1>
 
 <div>
-    <h4>Genre</h4>
+    <h4>@SharedLocalizer["Genre"]</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -29,6 +29,6 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Genre.ID">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Edit" asp-route-id="@Model.Genre.ID">@SharedLocalizer["Edit"]</a> |
+    <a asp-page="./Index">@SharedLocalizer["BackToList"]</a>
 </div>

@@ -5,9 +5,10 @@ namespace GameLibrary.Models
     public class Genre
     {
         public int ID { get; set; }
-        [Required(ErrorMessage = "Genre Name is mandatory")]
-        [Display(Name = "Genre Name")]
+        [Required(ErrorMessage = "Error_TitleRequired")]
+        [Display(Name = "Genre")]
         public string? Name { get; set; }
+        [Display(Name = "Games")]
         public ICollection<GameGenre>? GameGenres { get; set; }
     }
 }

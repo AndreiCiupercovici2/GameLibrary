@@ -2,13 +2,13 @@
 @model GameLibrary.Pages.Platforms.DetailsModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = SharedLocalizer["DetailsPlatformPageTitle"];
 }
 
-<h1>Details</h1>
+<h1>@SharedLocalizer["DetailsPlatformPageTitle"]</h1>
 
 <div>
-    <h4>Platform</h4>
+    <h4>@SharedLocalizer["Platform"]</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -24,7 +24,7 @@
             @Html.DisplayFor(model => model.Platform.Manufacturer)
         </dd>
         <dt class="col-sm-2">
-            Games
+            @SharedLocalizer["Games"]
         </dt>
         <dd class="col-sm-10">
             @foreach (var platformLink in Model.Platform.GamePlatforms)
@@ -35,6 +35,6 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Platform.ID">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Edit" asp-route-id="@Model.Platform.ID">@SharedLocalizer["Edit"]</a> |
+    <a asp-page="./Index">@SharedLocalizer["BackToList"]</a>
 </div>

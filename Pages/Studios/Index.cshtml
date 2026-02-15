@@ -2,13 +2,13 @@
 @model GameLibrary.Pages.Studios.IndexModel
 
 @{
-    ViewData["Title"] = "Studios";
+    ViewData["Title"] = @SharedLocalizer["Studios"];
 }
 
-<h1>Studios</h1>
+<h1>@SharedLocalizer["Studios"]</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">@SharedLocalizer["CreateStudioPageTitle"]</a>
 </p>
 <table class="table">
     <thead>
@@ -32,9 +32,9 @@
                 @Html.DisplayFor(modelItem => item.Country)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.ID">@SharedLocalizer["Edit"]</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">@SharedLocalizer["Details"]</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">@SharedLocalizer["DeleteButton"]</a>
             </td>
         </tr>
 }

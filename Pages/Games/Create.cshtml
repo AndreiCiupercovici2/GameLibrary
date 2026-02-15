@@ -1,13 +1,16 @@
 ﻿@page
 @model GameLibrary.Pages.Games.CreateModel
 
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = SharedLocalizer["GameCreatePageTitle"];
 }
 
-<h1>Create</h1>
+<h1>@SharedLocalizer["GameCreatePageTitle"]</h1>
 
-<h4>Game</h4>
+<h4>@SharedLocalizer["GameCreatePageSubtitle"]</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -20,17 +23,21 @@
                 <span asp-validation-for="Game.Title" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <span class="text-danger">*</span>
                 <label asp-for="Game.Price" class="control-label"></label>
                 <input asp-for="Game.Price" class="form-control" />
                 <span asp-validation-for="Game.Price" class="text-danger"></span>
             </div>
+            <small class="form-text text-muted">
+                @SharedLocalizer["Price_Hint"]
+            </small>
             <div class="form-group">
-                <label asp-for="Game.StudioID" class="control-label">Studio Name</label>
+                <label asp-for="Game.StudioID" class="control-label"></label>
                 <select asp-for="Game.StudioID" class ="form-control" asp-items="ViewBag.StudioID" ></select>
                 <span asp-validation-for="Game.StudioID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Genres</label>
+                <label class="control-label"></label>
                 @foreach (var item in Model.GenreOptions)
                 {
                     <div class="form-check">
@@ -40,7 +47,7 @@
                 }
             </div>
             <div class="form-group">
-                <label class="control-label">Platforms</label>
+                <label class="control-label"></label>
                 @foreach (var item in Model.PlatformOptions)
                 {
                     <div class="form-check">
@@ -50,14 +57,14 @@
                 }
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="@SharedLocalizer["CreateButton"]" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="Index">@SharedLocalizer["BackToList"]</a>
 </div>
 
 @section Scripts {
