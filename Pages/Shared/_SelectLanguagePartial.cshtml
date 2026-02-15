@@ -26,7 +26,9 @@
             onchange="this.form.submit()"
             asp-for="@requestCulture.RequestCulture.UICulture.Name"
             asp-items="cultureItems"
-            class="form-select from-select-sm">
+            class="form-select from-select-sm"
+            aria-label="Select Language"
+            data-testid="language-selector">
     </select>
 </form>
 

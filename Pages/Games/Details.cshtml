@@ -5,50 +5,50 @@
     ViewData["Title"] = SharedLocalizer["DetailsGamePageTitle"];
 }
 
-<h1>@SharedLocalizer["DetailsGamePageTitle"]</h1>
+<h1 data-testid="details-game-title">@SharedLocalizer["DetailsGamePageTitle"]</h1>
 
 <div>
     <hr />
-    <dl class="row">
+    <dl class="row" data-testid="game-details-container">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Game.Title)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-10" data-testid="game-title-value">
             @Html.DisplayFor(model => model.Game.Title)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Game.Price)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-10" data-testid="game-price-value">
             @Model.Game.Price.ToCurrency()
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Game.Studio)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-10" data-testid="game-studio-value">
             @Html.DisplayFor(model => model.Game.Studio.Name)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Game.GameGenres)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-10" data-testid="game-genres-list">
             @foreach (var genreLink in Model.Game.GameGenres)
             {
-                <span>@genreLink.Genre.Name</span> <br />
+                <span data-testid="genre-item-@genreLink.Genre.Name">@genreLink.Genre.Name</span> <br />
             }
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Game.GamePlatforms)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-10" data-testid="game-platforms-list">
             @foreach (var platformLink in Model.Game.GamePlatforms)
             {
-                <span>@platformLink.Platform.Name</span> <br />
+                <span data-testid="platform-item-@platformLink.Platform.Name">@platformLink.Platform.Name</span> <br />
             }
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Game.ID">@SharedLocalizer["Edit"]</a> |
-    <a asp-page="./Index">@SharedLocalizer["BackToList"]</a>
+    <a asp-page="./Edit" asp-route-id="@Model.Game.ID" data-testid="edit-game-link">@SharedLocalizer["Edit"]</a> |
+    <a asp-page="./Index" data-testid="back-to-list-link">@SharedLocalizer["BackToList"]</a>
 </div>

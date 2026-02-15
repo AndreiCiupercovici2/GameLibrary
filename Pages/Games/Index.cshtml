@@ -5,12 +5,12 @@
     ViewData["Title"] = @SharedLocalizer["Games"];
 }
 
-<h1>@SharedLocalizer["Games"]</h1>
+<h1 data-testid="index-game-title">@SharedLocalizer["Games"]</h1>
 
 <p>
-    <a asp-page="Create">@SharedLocalizer["GameCreatePageTitle"]</a>
+    <a asp-page="Create" data-testid="create-game-btn">@SharedLocalizer["GameCreatePageTitle"]</a>
 </p>
-<table class="table">
+<table class="table" data-testid="games-table">
     <thead>
         <tr>
             <th>
@@ -33,32 +33,36 @@
     </thead>
     <tbody>
 @foreach (var item in Model.Game) {
-            <tr>
-            <td>
+            <tr data-testid="game-row-@item.ID">
+            <td data-testid="cell-title-@item.ID">
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
-            <td>
+            <td data-testid="cell-price-@item.ID">
                 @item.Price.ToCurrency()
             </td>
-            <td>
+            <td data-testid="cell-studio-@item.ID">
                 @Html.DisplayFor(modelItem => item.Studio.Name)
             </td>
             <td>
                 @foreach (var gg in item.GameGenres)
                 {
-                        @gg.Genre.Name <br />
+                    <span data-testid="genre-tag-@item.ID">
+                        @gg.Genre.Name 
+                    </span><br />
                 }
             </td>
             <td>
                 @foreach (var gp in item.GamePlatforms)
                 {
-                        @gp.Platform.Name <br />
+                    <span data-testid="platform-tag-@item.ID">
+                            @gp.Platform.Name
+                    </span><br />
                 }
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">@SharedLocalizer["Edit"]</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">@SharedLocalizer["Details"]</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">@SharedLocalizer["DeleteButton"]</a>
+                <a asp-page="./Edit" asp-route-id="@item.ID" data-testid="edit-game-btn">@SharedLocalizer["Edit"]</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID" data-testid="details-game-btn">@SharedLocalizer["Details"]</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID" data-testid="delete-game-btn">@SharedLocalizer["DeleteButton"]</a>
             </td>
         </tr>
 }
