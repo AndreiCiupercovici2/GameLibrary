@@ -207,4 +207,58 @@
   <data name="Manufacturer" xml:space="preserve">
     <value>Producător</value>
   </data>
+  <data name="StudioCreatePageTitle" xml:space="preserve">
+    <value>Creează Studio</value>
+  </data>
+  <data name="DetailsStudioPageTitle" xml:space="preserve">
+    <value>Detaliile Studioului</value>
+  </data>
+  <data name="Studio" xml:space="preserve">
+    <value>Studiou</value>
+  </data>
+  <data name="DeleteStudioPageTitle" xml:space="preserve">
+    <value>Șterge Studiou</value>
+  </data>
+  <data name="DeleteStudioPageSubtitle" xml:space="preserve">
+    <value>Ești sigur ca dorești să ștergi studioul acesta?</value>
+  </data>
+  <data name="GenreCreatePageTitle" xml:space="preserve">
+    <value>Creează Gen</value>
+  </data>
+  <data name="GenreCreatePageSubtitle" xml:space="preserve">
+    <value>Adaugă un Gen nou</value>
+  </data>
+  <data name="EditGenrePageTitle" xml:space="preserve">
+    <value>Editează Genul</value>
+  </data>
+  <data name="SelectGames" xml:space="preserve">
+    <value>Alege Jocuri (ține apăsat CTRL pentru a alege mai multe)</value>
+  </data>
+  <data name="DetailsGenrePageTitle" xml:space="preserve">
+    <value>Detaliile Genului</value>
+  </data>
+  <data name="DeleteGenrePageTitle" xml:space="preserve">
+    <value>Șterge Gen</value>
+  </data>
+  <data name="DeleteGenrePageSubtitle" xml:space="preserve">
+    <value>Ești sigur ca dorești să ștergi genul acesta?</value>
+  </data>
+  <data name="PlatformCreatePageTitle" xml:space="preserve">
+    <value>Creează Platformă</value>
+  </data>
+  <data name="DetailsPlatformPageTitle" xml:space="preserve">
+    <value>Detaliile Platformei</value>
+  </data>
+  <data name="EditPlatformPageTitle" xml:space="preserve">
+    <value>Editează Platforma</value>
+  </data>
+  <data name="DeletePlatformPageTitle" xml:space="preserve">
+    <value>Șterge Platforma</value>
+  </data>
+  <data name="DeletePlatformPageSubtitle" xml:space="preserve">
+    <value>Ești sigur ca dorești să ștergi platforma aceasta?</value>
+  </data>
+  <data name="EditStudioPageTitle" xml:space="preserve">
+    <value>Editează Studioul</value>
+  </data>
 </root>

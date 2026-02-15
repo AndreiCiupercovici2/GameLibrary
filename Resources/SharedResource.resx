@@ -207,4 +207,58 @@
   <data name="Manufacturer" xml:space="preserve">
     <value>Manufacturer</value>
   </data>
+  <data name="StudioCreatePageTitle" xml:space="preserve">
+    <value>Create Studio</value>
+  </data>
+  <data name="DetailsStudioPageTitle" xml:space="preserve">
+    <value>Studio Details</value>
+  </data>
+  <data name="Studio" xml:space="preserve">
+    <value>Studio</value>
+  </data>
+  <data name="DeleteStudioPageTitle" xml:space="preserve">
+    <value>Delete Studio</value>
+  </data>
+  <data name="DeleteStudioPageSubtitle" xml:space="preserve">
+    <value>Are you sure you want to delete this studio?</value>
+  </data>
+  <data name="GenreCreatePageTitle" xml:space="preserve">
+    <value>Create Genre</value>
+  </data>
+  <data name="GenreCreatePageSubtitle" xml:space="preserve">
+    <value>Create a new Genre</value>
+  </data>
+  <data name="EditGenrePageTitle" xml:space="preserve">
+    <value>Edit Genre</value>
+  </data>
+  <data name="SelectGames" xml:space="preserve">
+    <value>Select Games (Hold CTRL to select multiple)</value>
+  </data>
+  <data name="DetailsGenrePageTitle" xml:space="preserve">
+    <value>Genre Details</value>
+  </data>
+  <data name="DeleteGenrePageTitle" xml:space="preserve">
+    <value>Delete Genre</value>
+  </data>
+  <data name="DeleteGenrePageSubtitle" xml:space="preserve">
+    <value>Are you sure you want to delete this genre?</value>
+  </data>
+  <data name="PlatformCreatePageTitle" xml:space="preserve">
+    <value>Create Platform</value>
+  </data>
+  <data name="DetailsPlatformPageTitle" xml:space="preserve">
+    <value>Platform details</value>
+  </data>
+  <data name="EditPlatformPageTitle" xml:space="preserve">
+    <value>Edit Platform</value>
+  </data>
+  <data name="DeletePlatformPageTitle" xml:space="preserve">
+    <value>Delete Platform</value>
+  </data>
+  <data name="DeletePlatformPageSubtitle" xml:space="preserve">
+    <value>Are you sure you want to delete this platform?</value>
+  </data>
+  <data name="EditStudioPageTitle" xml:space="preserve">
+    <value>Edit Studio</value>
+  </data>
 </root>
